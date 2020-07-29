@@ -56,14 +56,22 @@ const generateEmployeeInfo = (employees) => {
     for( let i=0; i<cardButton.length; i++){
         cardButton[i].addEventListener('click', (e) =>{
             if(e.target === cardButton[i] || cardButton[i].contains(e.target)){
-                console.log(`Clicked ${i}`);
-                //generateModal(users, i);
+                generateModal(employees, i);
             }
         })
     }
 }
 
+/* generateModal(employees, index)
+* Displays modal window for the employee selected by the user
+* @params {employees} The formatted JSON from the API 
+* @params {index} index value of the selected employee */
 
+const generateModal = (employees, index) => {
+    
+    const employee = employees[index];
+    console.log(employee);
+}
 
 /*==================
 *  On page load
