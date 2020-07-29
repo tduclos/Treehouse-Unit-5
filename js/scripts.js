@@ -30,8 +30,10 @@ function checkStatus(response){
 * @params {employees} The formatted JSON from the API */
 
 const generateEmployeeInfo = (employees) => {
-    const gallery = document.getElementById("gallery");
-    employees.map(employee => {
+    const gallery = document.getElementById("gallery"); //selector for the gallery div
+    
+    employees.map(employee => { 
+        // content for each individual card
         const card = `
             <div class="card">
                 <div class="card-img-container">
@@ -69,8 +71,43 @@ const generateEmployeeInfo = (employees) => {
 
 const generateModal = (employees, index) => {
     
-    const employee = employees[index];
-    console.log(employee);
+    const employee = employees[index]; //Data of the employee the user clicked on
+    
+    const modalContainer = document.createElement('div'); //container for the window
+    modalContainer.className = 'modal-container';
+    
+    let dob = `${employee.dob.date.substring(5, 7)}-${employee.dob.date.substring(8, 10)}-${employee.dob.date.substring(0, 4)}`; //reformatted date of birth
+    
+    //content for the modal window, to append to the container
+    const modal = ` 
+        <div class="modal">
+                <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                <div class="modal-info-container">
+                    <img class="modal-img" src="${employee.picture.large}" alt="profile picture">
+                    <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
+                    <p class="modal-text">${employee.email}</p>
+                    <p class="modal-text cap">${employee.location.city}</p>
+                    <hr>
+                    <p class="modal-text">${employee.phone}</p>
+                    <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}<br> ${employee.location.city}, ${employee.location.state}<br> ${employee.location.postcode}</p>
+                    <p class="modal-text">Birthdate: ${dob}</p>
+                </div>
+            </div>
+    `;
+    
+    modalContainer.innerHTML = modal;
+    document.body.prepend(modalContainer);
+    
+    //event listener for the modal close button
+    
+    const closeButton  = document.getElementById('modal-close-btn');
+    
+    modalContainer.addEventListener('click', (e) =>{
+       if(e.target === closeButton){
+           document.body.removeChild(modalContainer);
+           return;
+       } 
+    });
 }
 
 /*==================
