@@ -96,14 +96,14 @@ const generateModal = (employees, index) => {
     `;
     
     modalContainer.innerHTML = modal;
-    document.body.prepend(modalContainer);
+    document.body.append(modalContainer);
     
     //event listener for the modal close button
     
     const closeButton  = document.getElementById('modal-close-btn');
     
     modalContainer.addEventListener('click', (e) =>{
-       if(e.target === closeButton){
+       if(e.target === closeButton || closeButton.contains(e.target)){
            document.body.removeChild(modalContainer);
            return;
        } 
@@ -119,6 +119,5 @@ const generateModal = (employees, index) => {
 fetch(peopleUrl)
     .then(checkStatus)
     .then(res => res.json())
-    //.then(res => console.log(res))
-    .then(data => generateEmployeeInfo(data.results))
+    .then(data => generateEmployeeInfo(data.results)) //send the data to be processed and appended
     .catch(error => console.log('An error occured: ', error))
