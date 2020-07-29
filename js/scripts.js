@@ -30,19 +30,19 @@ function checkStatus(response){
 * @params {employees} The formatted JSON from the API */
 
 const generateEmployeeInfo = (employees) => {
-    const gallery = document.getElementById("gallery"); //selector for the gallery div
+    const gallery = document.getElementById('gallery'); //selector for the gallery div
     
     employees.map(employee => { 
         // content for each individual card
         const card = `
-            <div class="card">
-                <div class="card-img-container">
-                    <img class="card-img" src="${employee.picture.large}" alt="profile picture">
+            <div class='card'>
+                <div class='card-img-container'>
+                    <img class='card-img' src='${employee.picture.large}' alt='profile picture'>
                 </div>
-                <div class="card-info-container">
-                    <h3 id="name" class="card-name cap">${employee.name.first} ${employee.name.last}</h3>
-                    <p class="card-text">${employee.email}</p>
-                    <p class="card-text cap">${employee.location.city}, ${employee.location.state}</p>
+                <div class='card-info-container'>
+                    <h3 id='name' class='card-name cap'>${employee.name.first} ${employee.name.last}</h3>
+                    <p class='card-text'>${employee.email}</p>
+                    <p class='card-text cap'>${employee.location.city}, ${employee.location.state}</p>
                 </div>
             </div>
             `;
@@ -80,17 +80,17 @@ const generateModal = (employees, index) => {
     
     //content for the modal window, to append to the container
     const modal = ` 
-        <div class="modal">
-                <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                <div class="modal-info-container">
-                    <img class="modal-img" src="${employee.picture.large}" alt="profile picture">
-                    <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
-                    <p class="modal-text">${employee.email}</p>
-                    <p class="modal-text cap">${employee.location.city}</p>
+        <div class='modal'>
+                <button type='button' id='modal-close-btn' class='modal-close-btn'><strong>X</strong></button>
+                <div class='modal-info-container'>
+                    <img class='modal-img' src='${employee.picture.large}' alt='profile picture'>
+                    <h3 id='name' class='modal-name cap'>${employee.name.first} ${employee.name.last}</h3>
+                    <p class='modal-text'>${employee.email}</p>
+                    <p class='modal-text cap'>${employee.location.city}</p>
                     <hr>
-                    <p class="modal-text">${employee.phone}</p>
-                    <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}<br> ${employee.location.city}, ${employee.location.state}<br> ${employee.location.postcode}</p>
-                    <p class="modal-text">Birthdate: ${dob}</p>
+                    <p class='modal-text'>${employee.phone}</p>
+                    <p class='modal-text'>${employee.location.street.number} ${employee.location.street.name}<br> ${employee.location.city}, ${employee.location.state}<br> ${employee.location.postcode}</p>
+                    <p class='modal-text'>Birthdate: ${dob}</p>
                 </div>
             </div>
     `;
@@ -121,4 +121,4 @@ fetch(peopleUrl)
     .then(res => res.json())
     //.then(res => console.log(res))
     .then(data => generateEmployeeInfo(data.results))
-    .catch(error => console.log("An error occured: ", error))
+    .catch(error => console.log('An error occured: ', error))
